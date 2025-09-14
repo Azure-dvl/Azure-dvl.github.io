@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esmeralda Céspedes - Desarrolladora de Software</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --accent-primary: #3498db;
+            --accent-secondary: #2980b9;
+            --accent-tertiary: #2c3e50;
+            --text-primary: #ffffff;
+            --text-secondary: #bdc3c7;
+            --node-bg: #2c3e50;
+            --node-border: #3498db;
+            --connection-line: #3498db;
+            --glow-color: rgba(52, 152, 219, 0.3);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .microservices-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .header p {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-link {
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            color: var(--accent-primary);
+            transform: translateY(-3px);
+        }
+        
+        .architecture {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+        
+        .service-row {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .service-node {
+            background-color: var(--node-bg);
+            border: 2px solid var(--node-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            width: 280px;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .service-node:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px var(--glow-color);
+        }
+        
+        .service-node::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 5px 5px 0 0;
+        }
+        
+        .service-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--accent-primary);
+            text-align: center;
+        }
+        
+        .service-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-primary);
+            text-align: center;
+        }
+        
+        .service-content {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+        
+        .service-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+        
+        .tech-tag {
+            background-color: rgba(52, 152, 219, 0.2);
+            color: var(--accent-primary);
+            padding: 0.3rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            border: 1px solid rgba(52, 152, 219, 0.3);
+        }
+        
+        .central-node {
+            background: linear-gradient(145deg, var(--bg-secondary), var(--node-bg));
+            border: 2px solid var(--node-border);
+            border-radius: 15px;
+            padding: 2.5rem;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            box-shadow: 0 0 35px var(--glow-color);
+            z-index: 2;
+        }
+        
+        .central-node::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary), var(--accent-tertiary));
+            border-radius: 16px;
+            z-index: -1;
+            animation: border-glow 3s ease infinite;
+        }
+        
+        @keyframes border-glow {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+        
+        .central-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent-primary);
+        }
+        
+        .central-content {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+        
+        .connections {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .connection {
+            position: absolute;
+            background: linear-gradient(to right, var(--accent-primary), transparent);
+            height: 2px;
+            transform-origin: 0 0;
+        }
+        
+        .connection::after {
+            content: '';
+            position: absolute;
+            right: -6px;
+            top: -4px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--accent-primary);
+            box-shadow: 0 0 10px var(--accent-primary);
+        }
+        
+        @media (max-width: 1100px) {
+            .service-row {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .service-node {
+                width: 100%;
+                max-width: 500px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+            
+            .central-node {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="microservices-container">
+        <div class="header">
+            <h1>Esmeralda Céspedes Chávez</h1>
+            <p>Desarrolladora de Software Especializada en Soluciones Web</p>
+            
+            <div class="social-links">
+                <a href="https://github.com/Azure-dvl" class="social-link" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://t.me/azure_devil" class="social-link" title="Instagram">
+                    <i class="fab fa-telegram"></i>
+                </a>
+                <a href="mailto:subarachisekai@gmail.com" class="social-link" title="Correo Electrónico">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+        
+        <div class="architecture">
+            <!-- Fila superior: Habilidades -->
+            <div class="service-row">
+                <div class="service-node">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="service-title">Lenguajes de Programación</h3>
+                    <div class="service-content">
+                        Desarrollo de aplicaciones escalables y de alto rendimiento utilizando tecnologías modernas.
+                    </div>
+                    <div class="service-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag">JavaScript</span>
+                    </div>
+                </div>
+                
+                <div class="service-node">
+                    <div class="service-icon">
+                        <i class="fas fa-cubes"></i>
+                    </div>
+                    <h3 class="service-title">Frameworks & Librerías</h3>
+                    <div class="service-content">
+                        Implementación de soluciones robustas utilizando frameworks modernos para desarrollo full-stack.
+                    </div>
+                    <div class="service-tech">
+                        <span class="tech-tag">Django</span>
+                        <span class="tech-tag">Angular</span>
+                    </div>
+                </div>
+                
+                <div class="service-node">
+                    <div class="service-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3 class="service-title">Bases de Datos</h3>
+                    <div class="service-content">
+                        Diseño, optimización e implementación de esquemas de bases de datos relacionales y no relacionales.
+                    </div>
+                    <div class="service-tech">
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">MongoDB</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Nodo central: Perfil -->
+            <div class="central-node">
+                <h2 class="central-title">Perfil Profesional</h2>
+                <p class="central-content">
+                    Desarrolladora de software especializada en soluciones web frontend, con capacidad para desempeñar roles full-stack y desarrollo de aplicaciones desktop nativas. Comprometida con la creación de software eficiente, mantenible y centrado en la experiencia del usuario.
+                </p>
+            </div>
+            
+            <!-- Fila inferior: Habilidades adicionales -->
+            <div class="service-row">
+                
+                <div class="service-node">
+                    <div class="service-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3 class="service-title">DevOps & Deployment</h3>
+                    <div class="service-content">
+                        Configuración de entornos de desarrollo, integración continua y despliegue de aplicaciones en diversos entornos.
+                    </div>
+                    <div class="service-tech">
+                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">AWS</span>
+                        <span class="tech-tag">Git</span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simular conexiones entre nodos
+        document.addEventListener('DOMContentLoaded', function() {
+            // En una implementación real, se calcularían las posiciones de los elementos
+            // y se dibujarían las líneas de conexión entre ellos
+        });
+    </script>
+</body>
+</html>
